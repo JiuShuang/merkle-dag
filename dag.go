@@ -41,7 +41,7 @@ func getDataHash(data []byte, h hash.Hash) []byte {
 
 func StoreFile(store KVStore, node File, h hash.Hash) ([]byte, []byte) {
 
-	fileType := []byte("block")
+	fileType := []byte("blob")
 	//文件不需要分片的时候
 	if len(node.Bytes()) < BLOCK_SIZE {
 		data := node.Bytes()
@@ -79,7 +79,7 @@ func StoreFile(store KVStore, node File, h hash.Hash) ([]byte, []byte) {
 					return nil, nil
 				}
 			}
-			obj.Data = append(obj.Data, []byte("block")...)
+			obj.Data = append(obj.Data, []byte("blob")...)
 			obj.Links = append(obj.Links, Link{Hash: blobHash, Size: end - start})
 		}
 
